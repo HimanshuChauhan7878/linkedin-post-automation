@@ -1,4 +1,3 @@
-# main.py
 import argparse
 from llm_agent import generate_linkedin_post
 from automation import open_linkedin_and_paste
@@ -22,7 +21,6 @@ def cli_entry():
     post = generate_linkedin_post(args.cmd, tone=args.tone)
 
     if isinstance(post, (list, tuple)):
-        # defensive: if LLM wrapper returned tuple/list, join into string
         post = " ".join(map(str, post))
 
     post = str(post)

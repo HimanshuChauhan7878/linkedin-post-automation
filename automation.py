@@ -1,4 +1,3 @@
-# automation.py (customized for your LinkedIn UI)
 import subprocess
 import time
 import socket
@@ -14,10 +13,6 @@ CHROME_PATH = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 USER_DATA_DIR = r"C:\ChromeAutomationProfile"
 DEBUG_PORT = 9222
 
-
-# ================================================================
-# UTILITIES
-# ================================================================
 def is_debug_port_open():
     try:
         with socket.create_connection(("localhost", DEBUG_PORT), timeout=0.5):
@@ -74,10 +69,6 @@ def attach_selenium():
         print(traceback.format_exc())
         return None
 
-
-# ================================================================
-# POPUP HANDLING
-# ================================================================
 def close_popups(driver):
     time.sleep(1)
     selectors = [
@@ -97,14 +88,8 @@ def close_popups(driver):
         except:
             pass
 
-
-# ================================================================
-# CLICK "START A POST" — CUSTOMIZED FOR YOUR UI
-# ================================================================
 def click_start_post(driver):
     wait = WebDriverWait(driver, 20)
-
-    # scroll feed container
     try:
         feed = driver.find_element(By.CSS_SELECTOR, "div.scaffold-layout__main")
         driver.execute_script("arguments[0].scrollTop = 0;", feed)
@@ -113,8 +98,6 @@ def click_start_post(driver):
         time.sleep(0.6)
     except:
         pass
-
-    # Your LinkedIn UI uses a simplified ArtDeco button:
     XPATHS = [
         "//button[@id='ember30']",
         "//button[contains(@class,'artdeco-button') and .//strong[text()='Start a post']]",
@@ -128,8 +111,6 @@ def click_start_post(driver):
 
             driver.execute_script("arguments[0].scrollIntoView({block:'center'});", elem)
             time.sleep(0.3)
-
-            # Force JS click (bypasses Chrome interaction restrictions)
             driver.execute_script("arguments[0].click();", elem)
 
             print("[automation] ✓ Start a post clicked (your UI version)!")
@@ -141,10 +122,6 @@ def click_start_post(driver):
     print("[automation] ❌ Could not click Start a post automatically.")
     return False
 
-
-# ================================================================
-# PASTE POST CONTENT
-# ================================================================
 def paste_into_editor(driver, text):
     wait = WebDriverWait(driver, 20)
     editor = None
@@ -174,9 +151,6 @@ def paste_into_editor(driver, text):
     print("\n[automation] ✓ Post text pasted successfully!")
 
 
-# ================================================================
-# MAIN WORKFLOW
-# ================================================================
 def open_linkedin_and_paste(post_text: str):
     print("\n========== LINKEDIN AUTOMATION START ==========\n")
 
@@ -211,3 +185,4 @@ def open_linkedin_and_paste(post_text: str):
     driver.quit()
 
     print("\n========== AUTOMATION COMPLETE ==========\n")
+[]
