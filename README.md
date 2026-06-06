@@ -1,4 +1,5 @@
-📌 LinkedIn Post Automation – AI Agent (Ollama + Selenium)
+AGENTIC AI PROJECT
+LinkedIn Post Automation – AI Agent (Ollama + Selenium)
 
 This project is a fully functional AI Agent that autonomously generates, prepares, and posts LinkedIn content using a single user prompt.
 It combines local LLM reasoning, browser automation, and agentic workflow execution.
